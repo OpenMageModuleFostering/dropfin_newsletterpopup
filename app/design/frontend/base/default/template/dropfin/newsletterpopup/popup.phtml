@@ -1,0 +1,186 @@
+<?php
+/**
+ * Dropfin
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade 
+ * this extension to newer versions in the future. 
+ *
+ * @category    Dropfin
+ * @package     Newsletter Popup
+ * @copyright   Copyright (c) Dropfin (http://www.dropfin.com)
+ */
+?>
+
+<?php
+    $newsletterPopupHelper = $this->helper('dropfin_newsletterpopup');
+    $cookie_name = $newsletterPopupHelper->getCookieName();
+    
+    if($newsletterPopupHelper->getStatus() && !isset($_COOKIE[$cookie_name])) {
+
+        $_existCookieTime = (isset($_COOKIE[$cookie_name]) ? $_COOKIE[$_COOKIE[$cookie_name]] : 0);
+        $_currentTime = mktime(date("H"), date("i"), date("s"), date("m"), date("d"), date("Y"));
+        $_timeDiff = $_currentTime - $_existCookieTime;
+
+        $lifeTime = (int) $newsletterPopupHelper->getCookieLifeTime();
+        $lifeTime = $lifeTime * 24 * 60 * 60;
+        if ($_timeDiff > $lifeTime){
+
+        setcookie($cookie_name, $_currentTime, time() + ($lifeTime), "/"); 
+    	?>
+        <style type="text/css">
+            .popup-top h2 {background-color: #<?php echo $newsletterPopupHelper->getHeaderBg();?>; color: #<?php echo $newsletterPopupHelper->getHeaderColor();?>;}
+            .popup-top { border-bottom: 1px dotted #<?php echo $newsletterPopupHelper->getBorderColor();?>; color: #<?php echo $newsletterPopupHelper->getPopupTextColor();?>; }
+            .popup-top h4, .popup-bottom h4 { color: #<?php echo $newsletterPopupHelper->getPopupTextColor();?>; }
+            #fancybox-content{border: 1px solid #<?php echo $newsletterPopupHelper->getBorderColor();?> !important;}
+            button.newsletter-btn {background: #<?php echo $newsletterPopupHelper->getButtonColor();?>; color: #<?php echo $newsletterPopupHelper->getButtonTextColor();?>}
+        </style>
+    	<div id="popup_content" class="popup-content">
+    		<div class="popup-top">
+    			<h2><?php echo $newsletterPopupHelper->getPopupTitle() ?></h2>
+    			<div class="popup-top-content">
+    				<h4><?php echo $newsletterPopupHelper->getPopupSubTitle() ?></h4>
+    				<p><?php echo $newsletterPopupHelper->getPopupDescription() ?></p>
+    				<div class="newsletter_form">
+    					<form action="<?php echo $this->getFormActionUrl(); ?>" name="newsletter" id="newsletter-popup-form" method="post">
+    						<div class="div-input">
+                                <input type="text" name="email" id="email" value="<?php echo $this->__('Enter your email address here') ?>" class="input-text required-entry validate-email" onfocus="keyFocus(this, '<?php echo $this->__('Enter your email address here') ?>')" onblur="keyBlur(this, '<?php echo $this->__('Enter your email address here') ?>')" />
+                                <input type="hidden" name="is_ajax" value="1" />
+                            </div>
+    						<button type="submit" class="newsletter-btn button" title="<?php echo $this->__('Subscribe') ?>"><span><span><?php echo $this->__('Subscribe') ?></span></span></button>
+    					</form>
+    				</div>
+                    <div class="newsletter_status"></div>
+    			</div>
+    		</div>
+    		<?php if($newsletterPopupHelper->getShowSocialLinks()) :?>
+    			<div class="popup-bottom">
+                    <?php if($newsletterPopupHelper->getShowSocialLinksTitle()) { ?>
+                        <h4><?php echo $newsletterPopupHelper->getSocialLinksTitle() ?></h4>
+                    <?php } ?>
+    				<ul>
+                        <?php $media = Mage::getBaseUrl('media').'dropfin/newsletterpopup/';?>
+    					<?php if(trim($newsletterPopupHelper->getFBLink()) != '') { ?>
+                            <li><a href="<?php echo $newsletterPopupHelper->getFBLink();?>" target="_blank"><img src="<?php echo $media.$newsletterPopupHelper->getFBIcon();?>" alt="<?php echo $this->__('Facebook');?>" width="<?php echo $newsletterPopupHelper->getIconSize();?>" height="<?php echo $newsletterPopupHelper->getIconSize();?>" /></a></li>
+                        <?php } ?>
+
+                        <?php if(trim($newsletterPopupHelper->getTwitterLink()) != '') { ?>
+                            <li><a href="<?php echo $newsletterPopupHelper->getTwitterLink();?>" target="_blank"><img src="<?php echo $media.$newsletterPopupHelper->getTwitterIcon();?>" alt="<?php echo $this->__('Twitter');?>" width="<?php echo $newsletterPopupHelper->getIconSize();?>" height="<?php echo $newsletterPopupHelper->getIconSize();?>" /></a></li>
+                        <?php } ?>
+
+                        <?php if(trim($newsletterPopupHelper->getGplusLink()) != '') { ?>
+                            <li><a href="<?php echo $newsletterPopupHelper->getGplusLink();?>" target="_blank"><img src="<?php echo $media.$newsletterPopupHelper->getGplusIcon();?>" alt="<?php echo $this->__('GPlus');?>" width="<?php echo $newsletterPopupHelper->getIconSize();?>" height="<?php echo $newsletterPopupHelper->getIconSize();?>" /></a></li>
+                        <?php } ?>
+
+                        <?php if(trim($newsletterPopupHelper->getYoutubeLink()) != '') { ?>
+                            <li><a href="<?php echo $newsletterPopupHelper->getYoutubeLink();?>" target="_blank"><img src="<?php echo $media.$newsletterPopupHelper->getYoutubeIcon();?>" alt="<?php echo $this->__('Youtube');?>" width="<?php echo $newsletterPopupHelper->getIconSize();?>" height="<?php echo $newsletterPopupHelper->getIconSize();?>" /></a></li>
+                        <?php } ?>
+
+                        <?php if(trim($newsletterPopupHelper->getPinLink()) != '') { ?>
+                            <li><a href="<?php echo $newsletterPopupHelper->getPinLink();?>" target="_blank"><img src="<?php echo $media.$newsletterPopupHelper->getPinIcon();?>" alt="<?php echo $this->__('Pinterest');?>" width="<?php echo $newsletterPopupHelper->getIconSize();?>" height="<?php echo $newsletterPopupHelper->getIconSize();?>" /></a></li>
+                        <?php } ?>
+
+                        <?php if(trim($newsletterPopupHelper->getLinkedinLink()) != '') { ?>
+                            <li><a href="<?php echo $newsletterPopupHelper->getLinkedinLink();?>" target="_blank"><img src="<?php echo $media.$newsletterPopupHelper->getLinkedinIcon();?>" alt="<?php echo $this->__('Linkedin');?>" width="<?php echo $newsletterPopupHelper->getIconSize();?>" height="<?php echo $newsletterPopupHelper->getIconSize();?>" /></a></li>
+                        <?php } ?>
+
+                        <?php if(trim($newsletterPopupHelper->getFlickrLink()) != '') { ?>
+                            <li><a href="<?php echo $newsletterPopupHelper->getFlickrLink();?>" target="_blank"><img src="<?php echo $media.$newsletterPopupHelper->getFlickrIcon();?>" alt="<?php echo $this->__('Flickr');?>" width="<?php echo $newsletterPopupHelper->getIconSize();?>" height="<?php echo $newsletterPopupHelper->getIconSize();?>" /></a></li>
+                        <?php } ?>
+
+                        <?php if(trim($newsletterPopupHelper->getVimeoLink()) != '') { ?>
+                            <li><a href="<?php echo $newsletterPopupHelper->getVimeoLink();?>" target="_blank"><img src="<?php echo $media.$newsletterPopupHelper->getVimeoIcon();?>" alt="<?php echo $this->__('Vimeo');?>" width="<?php echo $newsletterPopupHelper->getIconSize();?>" height="<?php echo $newsletterPopupHelper->getIconSize();?>" /></a></li>
+                        <?php } ?>
+
+                        <?php if(trim($newsletterPopupHelper->getInstagramLink()) != '') { ?>
+                            <li><a href="<?php echo $newsletterPopupHelper->getInstagramLink();?>" target="_blank"><img src="<?php echo $media.$newsletterPopupHelper->getInstagramIcon();?>" alt="<?php echo $this->__('Instagram');?>" width="<?php echo $newsletterPopupHelper->getIconSize();?>" height="<?php echo $newsletterPopupHelper->getIconSize();?>" /></a></li>
+                        <?php } ?>
+
+                        <?php if(trim($newsletterPopupHelper->getFoursquareLink()) != '') { ?>
+                            <li><a href="<?php echo $newsletterPopupHelper->getFoursquareLink();?>" target="_blank"><img src="<?php echo $media.$newsletterPopupHelper->getFoursquareIcon();?>" alt="<?php echo $this->__('Foursquare');?>" width="<?php echo $newsletterPopupHelper->getIconSize();?>" height="<?php echo $newsletterPopupHelper->getIconSize();?>" /></a></li>
+                        <?php } ?>
+
+                        <?php if(trim($newsletterPopupHelper->getTumblrLink()) != '') { ?>
+                            <li><a href="<?php echo $newsletterPopupHelper->getTumblrLink();?>" target="_blank"><img src="<?php echo $media.$newsletterPopupHelper->getTumblrIcon();?>" alt="<?php echo $this->__('Tumblr');?>" width="<?php echo $newsletterPopupHelper->getIconSize();?>" height="<?php echo $newsletterPopupHelper->getIconSize();?>" /></a></li>
+                        <?php } ?>
+    				</ul>
+    			</div>
+    		<?php endif; ?>
+    	</div>
+
+        <script type="text/javascript">
+            jQuery.noConflict();
+            jQuery(document).ready(function($) {
+
+                $.fancybox($("#popup_content").html());
+
+                $(".popup-top > div > div > #newsletter-popup-form").submit(function(e) {
+                    var postData = $(this).serializeArray();
+                    var formURL = $(this).attr("action");
+
+                    $(this).validate({
+                        rules: {
+                            email: {
+                                required: true,
+                                email: true
+                            },
+                        },
+                        messages: {
+                            email: "<?php echo $this->__('A valid email address is required');?>"
+                        }
+                    });
+
+                    if (!$(this).valid()){ return false; }
+
+                    $('.newsletter-btn').attr("disabled", true);
+                    $('.newsletter-btn').html('<span><span><?php echo $this->__('Loading...') ?></span></span>');
+                    $.ajax({
+                        url : formURL,
+                        type: "POST",
+                        data : postData,
+                        success:function(data, textStatus, jqXHR) {
+                            $('.newsletter-btn').html('<span><span><?php echo $this->__('Subscribe') ?></span></span>');
+                            $('.newsletter-btn').attr("disabled", false);
+                            $('.newsletter_status').removeClass('success');
+                            $('.newsletter_status').removeClass('error');
+                            if(data.success == 'false') {
+                                $('.newsletter_form').hide();
+                                $('.newsletter_status').html(data.msg);
+                                $('.newsletter_status').addClass('success');
+                                $('.newsletter_status').fadeIn('slow');
+                            } else {
+                                $('.newsletter_status').html(data.msg);
+                                $('.newsletter_status').fadeIn('slow');
+                                $('.newsletter_status').addClass('error');
+                            }
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            $('.newsletter-btn').attr("disabled", false);
+                        }
+                    });
+                    e.preventDefault();
+                });
+
+                <?php if($timeOut = (int) $newsletterPopupHelper->getTimeOut()) { ?>
+                    setTimeout( function() {
+                        $.fancybox.close('slow'); 
+                    }, <?php echo ($timeOut * 1000); ?>);
+                <?php } ?>
+                
+            });            
+        </script> 
+
+    	<?php
+        }
+    } 

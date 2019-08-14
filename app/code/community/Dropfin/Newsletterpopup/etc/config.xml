@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Dropfin
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade 
+ * this extension to newer versions in the future. 
+ *
+ * @category    Dropfin
+ * @package     Newsletter Popup
+ * @copyright   Copyright (c) Dropfin (http://www.dropfin.com)
+ */
+-->
+<config>
+    <modules>
+        <Dropfin_Newsletterpopup>
+            <version>1.0.0</version>
+        </Dropfin_Newsletterpopup>
+    </modules>
+
+    <default>
+        <dropfin_newsletterpopup>
+
+            <configurations module="newsletterpopup">
+                <enabled>1</enabled>
+                <cookies_name>dropfin_newsletter_popup</cookies_name>
+                <cookies_timeout>1</cookies_timeout>
+                <auto_hide>0</auto_hide>
+                <hide_timeout>5</hide_timeout>
+            </configurations>
+
+            <popup_content module="newsletterpopup">
+                <title>Join our mailing list</title>
+                <sub_title>Subscribe for our latest deals.</sub_title>
+                <description>Subscribe and get 5% discount of on your first purchase!!!</description>
+                <show_social_links>1</show_social_links>
+                <show_social_links_title>1</show_social_links_title>
+                <social_links_title>Follow Us:</social_links_title>
+                <fb_link>http://www.facebook.com/your-profile-id/</fb_link>
+                <twitter_link>http://www.twitter.com/your-profile-id/</twitter_link>
+                <gplus_link>http://www.plus.google.com.com/your-profile-id/</gplus_link>
+                <youtube_link>http://www.youtube.com/your-profile-id/</youtube_link>
+                <pinterest_link>http://www.pinterest.com/your-profile-id/</pinterest_link>
+                <linkedin_link>http://www.linkedin.com/your-profile-id/</linkedin_link>
+                <flickr_link>http://www.flickr.com/your-profile-id/</flickr_link>
+                <vimeo_link>http://www.vimeo.com/your-profile-id/</vimeo_link>
+                <instagram_link>http://www.instagram.com/your-profile-id/</instagram_link>
+                <foursquare_link>http://www.foursquare.com/your-profile-id/</foursquare_link>
+                <tumblr_link>http://www.tumblr.com/your-profile-id/</tumblr_link>
+            </popup_content>
+
+            <popup_design module="newsletterpopup">
+                <header_bg>3399cc</header_bg>
+                <header_color>ffffff</header_color>
+                <popup_border>3399cc</popup_border>
+                <popup_text_color>636363</popup_text_color>
+                <submit_btn_color>3399cc</submit_btn_color>
+                <submit_btn_text_color>ffffff</submit_btn_text_color>
+                <icon_size>34</icon_size>
+                <fb_icon>social_icons/fb.png</fb_icon>
+                <twitter_icon>social_icons/twitter.png</twitter_icon>
+                <gplus_icon>social_icons/gplus.png</gplus_icon>
+                <youtube_icon>social_icons/youtube.png</youtube_icon>
+                <pinterest_icon>social_icons/pinterest.png</pinterest_icon>
+                <linkedin_icon>social_icons/linkedin.png</linkedin_icon>
+                <flickr_icon>social_icons/flickr.png</flickr_icon>
+                <vimeo_icon>social_icons/vimeo.png</vimeo_icon>
+                <instagram_icon>social_icons/instagram.png</instagram_icon>
+                <foursquare_icon>social_icons/foursquare.png</foursquare_icon>
+                <tumblr_icon>social_icons/tumblr.png</tumblr_icon>
+            </popup_design>
+
+        </dropfin_newsletterpopup>
+    </default>
+
+    <adminhtml>
+        <layout>
+            <updates>
+                <dropfin_newsletterpopup>
+                    <file>dropfin/newsletterpopup.xml</file>
+                </dropfin_newsletterpopup>
+            </updates>
+        </layout>
+    </adminhtml>
+
+    <frontend>
+        <routers>
+            <newsletter>
+                <args>
+                    <modules>
+                        <dropfin_newsletterpopup before="Mage_Newsletter">Dropfin_Newsletterpopup</dropfin_newsletterpopup>
+                    </modules>
+                </args>
+            </newsletter>
+        </routers>   
+        <layout>
+            <updates>
+                <dropfin_newsletterpopup>
+                    <file>dropfin/newsletterpopup.xml</file>
+                </dropfin_newsletterpopup>
+            </updates>
+        </layout>
+    </frontend>
+
+    <global>
+        <helpers>
+            <dropfin_newsletterpopup>
+                <class>Dropfin_Newsletterpopup_Helper</class>
+            </dropfin_newsletterpopup>
+        </helpers>
+
+        <blocks>
+            <dropfin_newsletterpopup>
+                <class>Dropfin_Newsletterpopup_Block</class>
+            </dropfin_newsletterpopup>
+        </blocks>
+    </global> 
+</config>

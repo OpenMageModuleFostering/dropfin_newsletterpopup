@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Dropfin
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade 
+ * this extension to newer versions in the future. 
+ *
+ * @category    Dropfin
+ * @package     Newsletter Popup
+ * @copyright   Copyright (c) Dropfin (http://www.dropfin.com)
+ */
+-->
+<config>
+    <tabs>
+        <dropfin translate="label">
+            <label>Dropfin</label>
+            <sort_order>150</sort_order>
+        </dropfin>
+    </tabs>
+    <sections>
+        <dropfin_newsletterpopup translate="label">
+            <label>Newsletter Popup</label>
+            <tab>dropfin</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>70</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+
+                <configurations translate="label">
+                    <label>General Setting</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+
+                        <enabled translate="label">
+                            <label>Enable</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabled>
+
+                        <cookies_name translate="label">
+                            <label>Cookie Name</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <enabled>1</enabled>
+                            </depends>
+                        </cookies_name>
+
+                        <cookies_timeout translate="label">
+                            <label>Cookie Life Time (Days)</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>After this days popup will show again</comment>
+                            <depends>
+                                <enabled>1</enabled>
+                            </depends>
+                        </cookies_timeout>
+
+                        <auto_hide translate="label">
+                            <label>Auto Hide after Seconds</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Specify whether the popup hide automatically after some times</comment>
+                            <depends>
+                                <enabled>1</enabled>
+                            </depends>
+                        </auto_hide>
+
+                        <hide_timeout translate="label">
+                            <label>Time to Hide (Seconds)</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>After this time popup will hide automatically</comment>
+                            <depends>
+                                <enabled>1</enabled>
+                            </depends>
+                            <depends>
+                                <auto_hide>1</auto_hide>
+                            </depends>
+                        </hide_timeout>
+
+                    </fields>
+                </configurations>
+
+                <popup_content translate="label">
+                    <label>Popup Content Setting</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+
+                        <title translate="label">
+                            <label>Title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </title>
+
+                        <sub_title translate="label">
+                            <label>Sub Title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </sub_title>
+
+                        <description translate="label">
+                            <label>Description</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </description>
+
+                        <show_social_links translate="label">
+                            <label>Show Social Links</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </show_social_links>
+
+                        <show_social_links_title translate="label">
+                            <label>Show Social Links Title</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <show_social_links>1</show_social_links>
+                            </depends>
+                        </show_social_links_title>
+
+                        <social_links_title translate="label">
+                            <label>Social Links Title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <show_social_links_title>1</show_social_links_title>
+                                <show_social_links>1</show_social_links>
+                            </depends>
+                        </social_links_title>
+
+                        <fb_link translate="label">
+                            <label>Facebook Page Link</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Ex: http://www.facebook.com/your-profile-id/</comment>
+                            <depends>
+                                <show_social_links>1</show_social_links>
+                            </depends>
+                        </fb_link>
+
+                        <twitter_link translate="label">
+                            <label>Twitter Page Link</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Ex: http://www.twitter.com/your-profile-id/</comment>
+                            <depends>
+                                <show_social_links>1</show_social_links>
+                            </depends>
+                        </twitter_link>
+
+                        <gplus_link translate="label">
+                            <label>Google Plus Page Link</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Ex: http://www.plus.google.com.com/your-profile-id/</comment>
+                            <depends>
+                                <show_social_links>1</show_social_links>
+                            </depends>
+                        </gplus_link>
+
+                        <youtube_link translate="label">
+                            <label>Youtube Page Link</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Ex: http://www.youtube.com/your-profile-id/</comment>
+                            <depends>
+                                <show_social_links>1</show_social_links>
+                            </depends>
+                        </youtube_link>
+
+                        <pinterest_link translate="label">
+                            <label>Pinterest Page Link</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Ex: http://www.pinterest.com/your-profile-id/</comment>
+                            <depends>
+                                <show_social_links>1</show_social_links>
+                            </depends>
+                        </pinterest_link>
+
+                        <linkedin_link translate="label">
+                            <label>LinkedIn Page Link</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Ex: http://www.linkedin.com/your-profile-id/</comment>
+                            <depends>
+                                <show_social_links>1</show_social_links>
+                            </depends>
+                        </linkedin_link>
+
+                        <flickr_link translate="label">
+                            <label>Flickr Page Link</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>13</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Ex: http://www.flickr.com/your-profile-id/</comment>
+                            <depends>
+                                <show_social_links>1</show_social_links>
+                            </depends>
+                        </flickr_link>
+
+                        <vimeo_link translate="label">
+                            <label>Vimeo Page Link</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>14</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Ex: http://www.vimeo.com/your-profile-id/</comment>
+                            <depends>
+                                <show_social_links>1</show_social_links>
+                            </depends>
+                        </vimeo_link>
+
+                        <instagram_link translate="label">
+                            <label>Instagram Page Link</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Ex: http://www.instagram.com/your-profile-id/</comment>
+                            <depends>
+                                <show_social_links>1</show_social_links>
+                            </depends>
+                        </instagram_link>
+
+                        <foursquare_link translate="label">
+                            <label>FourSquare Page Link</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>16</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Ex: http://www.foursquare.com/your-profile-id/</comment>
+                            <depends>
+                                <show_social_links>1</show_social_links>
+                            </depends>
+                        </foursquare_link>
+
+                        <tumblr_link translate="label">
+                            <label>Tumblr Page Link</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>17</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Ex: http://www.tumblr.com/your-profile-id/</comment>
+                            <depends>
+                                <show_social_links>1</show_social_links>
+                            </depends>
+                        </tumblr_link>                        
+
+                    </fields>
+                </popup_content>
+
+                <popup_design translate="label">
+                    <label>Popup Design Setting</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>3</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+
+                        <header_bg translate="label">
+                            <label>Header Background Color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>dropfin_newsletterpopup/adminhtml_system_config_color</frontend_model>
+                            <validate>color</validate>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </header_bg>
+
+                        <header_color translate="label">
+                            <label>Header Text Color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>dropfin_newsletterpopup/adminhtml_system_config_color</frontend_model>
+                            <validate>color</validate>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </header_color>
+
+                        <popup_border translate="label">
+                            <label>Popup Border Color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>dropfin_newsletterpopup/adminhtml_system_config_color</frontend_model>
+                            <validate>color</validate>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </popup_border>
+
+                        <popup_text_color translate="label">
+                            <label>Popup Text Color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>dropfin_newsletterpopup/adminhtml_system_config_color</frontend_model>
+                            <validate>color</validate>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </popup_text_color>
+
+                        <submit_btn_color translate="label">
+                            <label>Submit Button Color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>dropfin_newsletterpopup/adminhtml_system_config_color</frontend_model>
+                            <validate>color</validate>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </submit_btn_color>
+
+                        <submit_btn_text_color translate="label">
+                            <label>Submit Button Text Color</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>dropfin_newsletterpopup/adminhtml_system_config_color</frontend_model>
+                            <validate>color</validate>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </submit_btn_text_color>
+
+                        <icon_size translate="label">
+                            <label>Social Icon Size</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </icon_size>
+
+                        <fb_icon translate="label">
+                            <label>Facebook Icon</label>
+                            <frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">dropfin/newsletterpopup</upload_dir>
+                            <base_url type="media" scope_info="1">dropfin/newsletterpopup</base_url>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <validate>required-entry</validate>
+                        </fb_icon>
+
+                        <twitter_icon translate="label">
+                            <label>Twitter Icon</label>
+                            <frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">dropfin/newsletterpopup</upload_dir>
+                            <base_url type="media" scope_info="1">dropfin/newsletterpopup</base_url>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <validate>required-entry</validate>
+                        </twitter_icon>
+
+                        <gplus_icon translate="label">
+                            <label>Google Plus Icon</label>
+                            <frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">dropfin/newsletterpopup</upload_dir>
+                            <base_url type="media" scope_info="1">dropfin/newsletterpopup</base_url>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <validate>required-entry</validate>
+                        </gplus_icon>
+
+                        <youtube_icon translate="label">
+                            <label>Youtube Icon</label>
+                            <frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">dropfin/newsletterpopup</upload_dir>
+                            <base_url type="media" scope_info="1">dropfin/newsletterpopup</base_url>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <validate>required-entry</validate>
+                        </youtube_icon>
+
+                        <pinterest_icon translate="label">
+                            <label>Pinterest Icon</label>
+                            <frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">dropfin/newsletterpopup</upload_dir>
+                            <base_url type="media" scope_info="1">dropfin/newsletterpopup</base_url>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <validate>required-entry</validate>
+                        </pinterest_icon>
+
+                        <linkedin_icon translate="label">
+                            <label>Linkedin Icon</label>
+                            <frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">dropfin/newsletterpopup</upload_dir>
+                            <base_url type="media" scope_info="1">dropfin/newsletterpopup</base_url>
+                            <sort_order>13</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <validate>required-entry</validate>
+                        </linkedin_icon>
+
+                        <flickr_icon translate="label">
+                            <label>Flickr Icon</label>
+                            <frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">dropfin/newsletterpopup</upload_dir>
+                            <base_url type="media" scope_info="1">dropfin/newsletterpopup</base_url>
+                            <sort_order>14</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <validate>required-entry</validate>
+                        </flickr_icon>
+
+                        <vimeo_icon translate="label">
+                            <label>Vimeo Icon</label>
+                            <frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">dropfin/newsletterpopup</upload_dir>
+                            <base_url type="media" scope_info="1">dropfin/newsletterpopup</base_url>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <validate>required-entry</validate>
+                        </vimeo_icon>
+
+                        <instagram_icon translate="label">
+                            <label>Instagram Icon</label>
+                            <frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">dropfin/newsletterpopup</upload_dir>
+                            <base_url type="media" scope_info="1">dropfin/newsletterpopup</base_url>
+                            <sort_order>16</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <validate>required-entry</validate>
+                        </instagram_icon>
+
+                        <foursquare_icon translate="label">
+                            <label>Foursquare Icon</label>
+                            <frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">dropfin/newsletterpopup</upload_dir>
+                            <base_url type="media" scope_info="1">dropfin/newsletterpopup</base_url>
+                            <sort_order>17</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <validate>required-entry</validate>
+                        </foursquare_icon>
+
+                        <tumblr_icon translate="label">
+                            <label>Tumblr Icon</label>
+                            <frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">dropfin/newsletterpopup</upload_dir>
+                            <base_url type="media" scope_info="1">dropfin/newsletterpopup</base_url>
+                            <sort_order>18</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <validate>required-entry</validate>
+                        </tumblr_icon>
+
+                    </fields>
+                </popup_design>
+
+            </groups>
+        </dropfin_newsletterpopup>
+    </sections>
+</config>
