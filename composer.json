@@ -1,16 +1,19 @@
 {
-    "name": "OpenMageModuleFostering/Dropfin_Newsletterpopup",
+    "name": "OpenMageModuleFostering\/Dropfin_Newsletterpopup",
     "type": "magento-module",
     "license": "OSL-v.3.0",
     "homepage": "",
     "description": "Dropfin Newsletter Popup",
     "authors": [
-    {
-        "name": "Dropfin",
-        "email": "t.balamani88@gmail.com"
-    }
-],
+        {
+            "name": "Dropfin",
+            "email": "t.balamani88@gmail.com"
+        }
+    ],
     "suggest": {
-        "magento-hackathon/magento-composer-installer": "*"
-    }
+        "magento-hackathon\/magento-composer-installer": "*"
+    },
+    "keywords": [
+        "openmage-module"
+    ]
 }
