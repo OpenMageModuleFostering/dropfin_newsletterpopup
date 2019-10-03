@@ -1,7 +1,7 @@
 {
-    "name": "OpenMageModuleFostering\/Dropfin_Newsletterpopup",
+    "name": "openmage-module-fostering\/dropfin_newsletterpopup",
     "type": "magento-module",
-    "license": "OSL-v.3.0",
+    "license": "OSL-3.0",
     "homepage": "",
     "description": "Dropfin Newsletter Popup",
     "authors": [
